@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+Hi adasdsa
+<ul>
+    {{goodreads_call}}<br />
+    <hr>
+    Review count: {{review_count}}<br />
+    <hr>
+    Review score: {{average_score}}<br />
+    <hr> {{awnser}}
+    <hr>
+    {{awnser['books'][0]['average_rating']}}
+    {{awnser['books'][0]['reviews_count']}}
+</ul>
+{% endblock %}

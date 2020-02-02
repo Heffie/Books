@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-6 mx-auto mt-3">
+        <div class="text-center">
+            <h1>Welcome to CS50 Books</h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="mx-auto mt-3">
+        <form action="/search" method="GET" class="form-inline">
+            <label class="sr-only" for="inlineFormInputName2">Name</label>
+            <input type="text" class="form-control mr-sm-2" name="book" id=""
+                placeholder="Search by title, isbn or author">
+            <button type="submit" class="btn btn-primary my-1">Submit</button>
+        </form>
+    </div>
+</div>
+{% if books %}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ISBN</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">API route</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td><a href="/books/{{book.isbn}}">{{book.isbn}}</a></td>
+            <td>{{book.title}}</td>
+            <td>{{ book.author }}</td>
+            <td><a href="/api/{{book.isbn}}">json link</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Hi, {{ book.title }}!</h1>
+<p>
+    <strong>Author: </strong>{{ book.author }} <br />
+    <strong>ISBN: </strong>{{ book.isbn }} <br />
+    <strong>Year: </strong>{{ book.year }} <br />
+    <strong>Aerage rating (Goodreads): </strong>{{ goodreads_info['books'][0]['average_rating'] }} <br />
+    <strong>Review count (Goodreads): </strong>{{ goodreads_info['books'][0]['reviews_count'] }} <br />
+</p>
+
+<hr>
+<h1>Write a review</h1>
+<form action="" method="post">
+    {{ form.hidden_tag() }}
+    <p>
+        {{ form.body.label }}<br>
+        {{ form.body(cols=50, rows=4) }}<br>
+        {% for error in form.body.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.rating.label }}<br>
+        {{ form.rating }}<br>
+        {% for error in form.rating.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>{{ form.submit() }}</p>
+</form>
+<hr>
+<h1>Reviews</h1>
+{% for review in book_reviews %}
+{% include '_review.html' %}
+{% endfor %}
+{% endblock %}
